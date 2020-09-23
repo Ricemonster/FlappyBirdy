@@ -1,8 +1,7 @@
 <template>
   <div id="app">
-    <Describe />
+    <Describe class="des" />
     <!-- 基础场景 -->
-    <img src="./assets/images/land.png" alt />
     <img src="./assets/images/land.png" alt />
     <div class="homePage">
       <img style="margin-top:200px;margin-bottom:30px;" src="./assets/images/title.png" alt />
@@ -102,6 +101,11 @@ export default {
 </script>
 
 <style>
+.des {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
 body,
 html {
   overflow: hidden;
