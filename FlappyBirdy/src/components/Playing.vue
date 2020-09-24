@@ -6,12 +6,16 @@
       :class="[move]"
       :style="{ backgroundPositionX: birdX + 'px', top: nowHeight + 'px' }"
     ></div>
+    <div v-else>
+      <Fail />
+    </div>
     <!-- top: nowHeight + 'px' -->
   </div>
 </template>
 
 <script>
 import Readdy from "./Readdy";
+import Fail from "./Failure"
 export default {
   props: {},
   data() {
@@ -23,7 +27,7 @@ export default {
       exist: true, // 小鸟的存在与否
     };
   },
-  components: { Readdy },
+  components: { Readdy,Fail },
   mounted() {
     let timerId = window.setInterval(this.birdyDown, "1000");
     let inciteID = window.setInterval(this.incite, "300");
@@ -55,21 +59,22 @@ export default {
       if (this.start == true) {
         this.move = "flight";
         this.start = false;
-        this.pageDown = window.setInterval(this.down, "10");
+        this.pageDown = window.setInterval(this.down, "9");
       } else {
         // 点击的要求是小鸟向上飞行，短暂的消除定时器，到达一个高点后继续下落
         clearInterval(this.pageDown); // 清除定时器
         this.nowHeight += -40;
+        this.pageDown = window.setInterval(this.down, "9");
       }
     },
     // 不断的下落
     down() {
       this.nowHeight += 1;
-      console.log(this.nowHeight);
-      if (this.nowHeight > 500 && this.nowHeight < 0) {
+      if (this.nowHeight > 500) {
         // 触发到底部去往失败页面
         clearInterval(this.pageDown);
         this.exist = false;
+
       }
     },
   },
