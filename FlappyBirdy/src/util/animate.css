@@ -1,0 +1,27 @@
+@keyframes topmove {
+    0% {
+        top: 300px;
+    }
+
+    50% {
+        top: 270px;
+    }
+
+    100% {
+        top: 300px;
+    }
+}
+
+@keyframes topmove1 {
+    0% {
+        top: 300px;
+    }
+
+    50% {
+        top: 270px;
+    }
+
+    100% {
+        top: 300px;
+    }
+}
