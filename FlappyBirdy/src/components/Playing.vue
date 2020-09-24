@@ -2,6 +2,7 @@
   <div class="map" @click="mapClick">
     <Readdy v-if="start" />
     <div
+      v-if="exist"
       :class="[move]"
       :style="{ backgroundPositionX: birdX + 'px', top: nowHeight + 'px' }"
     ></div>
@@ -19,6 +20,7 @@ export default {
       move: "",
       nowHeight: 270,
       start: true,
+      exist: true, // 小鸟的存在与否
     };
   },
   components: { Readdy },
@@ -27,6 +29,7 @@ export default {
     let inciteID = window.setInterval(this.incite, "300");
   },
   methods: {
+    // 开始时候维持上下移动
     birdyDown() {
       // 为了循环动画
       if (this.move == "") {
@@ -37,6 +40,7 @@ export default {
         this.move = "birdCage";
       }
     },
+    // 切换图片，鸟不断扇翅膀的状态
     incite() {
       if (this.birdX == 0) {
         this.birdX = -50;
@@ -47,9 +51,26 @@ export default {
       }
     },
     mapClick() {
-      this.start = false;
-      this.move = "flight";
-      this.nowHeight += -40;
+      // 开始维持下落
+      if (this.start == true) {
+        this.move = "flight";
+        this.start = false;
+        this.pageDown = window.setInterval(this.down, "10");
+      } else {
+        // 点击的要求是小鸟向上飞行，短暂的消除定时器，到达一个高点后继续下落
+        clearInterval(this.pageDown); // 清除定时器
+        this.nowHeight += -40;
+      }
+    },
+    // 不断的下落
+    down() {
+      this.nowHeight += 1;
+      console.log(this.nowHeight);
+      if (this.nowHeight > 500 && this.nowHeight < 0) {
+        // 触发到底部去往失败页面
+        clearInterval(this.pageDown);
+        this.exist = false;
+      }
     },
   },
 };

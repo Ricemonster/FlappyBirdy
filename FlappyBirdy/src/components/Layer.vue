@@ -11,7 +11,10 @@
           <i class="iconfont icon-github"></i>
         </a>
       </div>
-      <div></div>
+      <div style="margin-left: 20px" class="power">
+        <span>power by </span>
+        <i class="iconfont icon-vue"></i>
+      </div>
     </div>
     <div class="homePage">
       <img
@@ -113,13 +116,11 @@ export default {
   },
 };
 </script>
-
 <style>
 a {
   color: #fafafa;
   text-decoration: none;
 }
-
 a:hover {
   color: #00a0c6;
   text-decoration: none;
@@ -132,6 +133,7 @@ a:hover {
   top: 0px;
   left: -30px;
   align-items: center;
+  justify-content: center;
 }
 
 .homePage {
@@ -177,5 +179,23 @@ a:hover {
   100% {
     top: 0px;
   }
+}
+.power {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.power i {
+  color: #fafafa;
+  font-size: 20px;
+  padding-left: 10px;
+}
+.power span {
+  padding-left: 10px;
+  font-size: 19px;
+  font-family: serif;
+  font-weight: bold;
+  color: #fafafa;
 }
 </style>

@@ -20,7 +20,7 @@ export default {
   data() {
     return {
       start: false, // 默认为false
-      right: true, // 开始游戏
+      right: false, // 开始游戏
     };
   },
   methods: {
